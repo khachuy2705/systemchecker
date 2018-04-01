@@ -1,3 +1,29 @@
+########################################################################
+#Danh sách cần check:
+list_check_port=[
+	'103.68.243.223:80',
+	'103.68.243.223:443',
+	'dantri.vn:80',
+	'blogtamsu.vn:80'
+
+]
+
+list_check_ping=[
+	'8.8.8.8',
+	'8.8.4.4',
+	'4.2.2.3',
+	'4.2.2.4'
+]
+
+list_url=[
+	'http://congcaphe.com',
+	'http://dantri.com.vn',
+	'https://www.foody.vn'
+]
+########################################################################
+#Danh sách email nhận cảnh báo
+
+########################################################################
 #Cấu hình telegram
 api_telegram = 'https://api.telegram.org/bot471775980:AAGtU-QXFQfYmyfvatdUAwMB2XWzRc8F6EE/sendMessage'
 chat_id_telegram = '428519060'
