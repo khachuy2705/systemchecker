@@ -22,7 +22,10 @@ list_url=[
 ]
 ########################################################################
 #Danh sách email nhận cảnh báo
-
+list_email=[
+	'buikhachuy2705@gmail.com',
+	'huy.2705@gmail.com'
+]
 ########################################################################
 #Cấu hình telegram
 api_telegram = 'https://api.telegram.org/bot471775980:AAGtU-QXFQfYmyfvatdUAwMB2XWzRc8F6EE/sendMessage'
