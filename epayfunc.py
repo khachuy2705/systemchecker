@@ -65,21 +65,21 @@ def check_ping(target):
 		rep = os.system("ping -n 1 " + target + '> nul')
 		if rep == 0:
 			mess = "Ping " + str(target) + " thanh cong"
-			# print(mess)
+			print(mess)
 			return [1, mess]
 		else:
 			mess = "Mat ket noi toi " + target
-			# print(mess)
+			print(mess)
 			return [0, mess]
 	else:
 		rep = os.system("ping -c 1 " + target)
 		if rep == 0:
 			mess = "Ping " + str(target) + " thanh cong"
-			# print(mess)
+			print(mess)
 			return [1, mess]
 		else:
 			mess = "Mat ket noi toi " + target
-			# print(mess)
+			print(mess)
 			return [0, mess]
 
 # def ping_linux(target):
@@ -175,3 +175,4 @@ def lpop(key=config.redis_key_notify):
 		write_log(value)
 		data=None
 		return data
+
