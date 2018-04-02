@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 from epayfunc import *
 from config import list_check_port as list_check_port
 from config import list_check_ping as list_check_ping
@@ -30,5 +31,18 @@ def check_ping_list(lists):
 		else:
 			continue
 
-check_ping_list(config.list_check_ping)
-check_port_list(config.list_check_port)
+def check_link_lists(lists):
+	"""Check cac link được cấu hình trong config.py"""
+	for tmp in lists:
+		result=http_check(tmp)
+		if result[0]==0:
+			mail(config.list_email,'Canh bao check ping that bai',result[1])
+			telegram_send(result[1])
+		else:
+			continue
+
+
+if check_internet():
+	check_link_lists(config.list_url)
+	check_ping_list(config.list_check_ping)
+	check_port_list(config.list_check_port)
