@@ -1,8 +1,5 @@
 #-*- coding: utf-8 -*-
 from epayfunc import *
-from config import list_check_port as list_check_port
-from config import list_check_ping as list_check_ping
-from config import list_url as list_url
 
 # for member in list_check_port:
 # 	host_temp=member.split(':')
@@ -41,8 +38,17 @@ def check_link_lists(lists):
 		else:
 			continue
 
-
+import threading
 if check_internet():
-	check_link_lists(config.list_url)
-	check_ping_list(config.list_check_ping)
-	check_port_list(config.list_check_port)
+	linkck = threading.Thread(target=check_link_lists, args=(config.list_url,))
+	pingck = threading.Thread(target=check_ping_list, args=(config.list_check_ping,))
+	portck = threading.Thread(target=check_port_list, args=(config.list_check_port,))
+	linkck.start()
+	pingck.start()
+	portck.start()
+	linkck.join()
+	pingck.join()
+	portck.join()
+	# check_link_lists(config.list_url)
+	# check_ping_list(config.list_check_ping)
+	# check_port_list(config.list_check_port)
