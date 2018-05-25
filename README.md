@@ -7,6 +7,7 @@
 
 ## Cài đặt ban đầu:
 - Clone toàn bộ về --> Cài đặt gói pip: pip install -r requirment.txt
+- Các folder/file có trong file .gitignore có thể bỏ qua không cần clone về. Nếu bạn dự định deploy trên windows thì lấy về cũng được.
 - Cho chạy định kỳ file notify_checker.py bằng taskscheduler/crontab
 
 ### Mô tả luồng:
