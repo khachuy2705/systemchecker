@@ -13,9 +13,10 @@ def check_port_list(lists):
 		host_tmp=tmp.split(':')
 		result=check_port(host=host_tmp[0],port=host_tmp[1])
 		if result[0]==0:
-			mail(config.list_email,'Canh bao check port that bai',result[1])
-
-			telegram_send(result[1])
+			# mail(config.list_email,'Canh bao check port that bai',result[1])
+			noi_dung=getnow('time')+'___'+result[1]+"|-|"+str(config.message_timeout)
+			rpush(noi_dung)
+			# telegram_send(result[1])
 		else:
 			continue
 
@@ -24,8 +25,10 @@ def check_ping_list(lists):
 	for tmp in lists:
 		result=check_ping(tmp)
 		if result[0]==0:
-			mail(config.list_email,'Canh bao check ping that bai',result[1])
-			telegram_send(result[1])
+			# mail(config.list_email,'Canh bao check ping that bai',result[1])
+			# telegram_send(result[1])
+			noi_dung=getnow('time')+'___'+result[1]+"|-|"+str(config.message_timeout)
+			rpush(noi_dung)
 		else:
 			continue
 
@@ -34,8 +37,10 @@ def check_link_lists(lists):
 	for tmp in lists:
 		result=http_check(tmp)
 		if result[0]==0:
-			mail(config.list_email,'Canh bao check ping that bai',result[1])
-			telegram_send(result[1])
+			# mail(config.list_email,'Canh bao check ping that bai',result[1])
+			# telegram_send(result[1])
+			noi_dung=getnow('time')+'___'+result[1]+"|-|"+str(config.message_timeout)
+			rpush(noi_dung)
 		else:
 			continue
 

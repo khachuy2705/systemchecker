@@ -181,4 +181,17 @@ def lpop(key=config.redis_key_notify):
 		write_log(value)
 		data=None
 		return data
+import datetime
 
+def getnow(arg):
+	"""nếu arg= int thì trả về số thôi, nếu arg = time thì trả về định dạng ngày tháng, nếu không thì return False"""
+	if arg=='int':
+		now=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+		return str(now)
+	elif arg == 'time':
+		now = datetime.datetime.now().strftime("%Y:%m:%d %H:%M:%S ")
+		return str(now)
+	else:
+		return False
+# def get_time()
+# print(getnow())
