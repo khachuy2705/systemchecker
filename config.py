@@ -35,6 +35,9 @@ log_file='debug.log'
 
 ########################################################################
 #Cấu hình kết nối tới redis
+
+#cho_phep_su_dung_redis nếu bằng 1 thì mới cần redis để gửi notify, nếu không tiện triển khai redis thì bỏ qua, chỉ cần 1 server thực hiện check + alert
+cho_phep_su_dung_redis='1'
 redis_host='127.0.0.1'
 redis_port=6379
 redis_password=None

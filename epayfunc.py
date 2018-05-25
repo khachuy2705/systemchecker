@@ -156,20 +156,26 @@ def check_internet():
 #Các chức năng đẩy dữ liệu vào redis
 def rpush(content):
 	try:
-		write_log('Bat dau push du lieu len redis')
-		redis.rpush(config.redis_key_notify, content)
-		write_log('Da day du lieu len redis: '+str(content))
-		return True
+		if config.cho_phep_su_dung_redis == 1:
+			write_log('Bat dau push du lieu len redis')
+			redis.rpush(config.redis_key_notify, content)
+			write_log('Da day du lieu len redis: '+str(content))
+			return True
+		else:
+			return False
 	except Exception as value:
 		print(value)
 		write_log(value)
 		return False
 def lpop(key=config.redis_key_notify):
 	try:
-		write_log('Lay du lieu tu redis (LPOP)')
-		data=redis.lpop(key)
-		write_log('Du lieu lay tu redis:'+str(data))
-		return data
+		if config.cho_phep_su_dung_redis == 1:
+			write_log('Lay du lieu tu redis (LPOP)')
+			data=redis.lpop(key)
+			write_log('Du lieu lay tu redis:'+str(data))
+			return data
+		else:
+			return False
 	except Exception as value:
 		print(value)
 		write_log(value)
