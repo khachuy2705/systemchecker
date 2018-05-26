@@ -1,5 +1,6 @@
 config.py.production
-Include
-Lib
-Scripts
-tcl
+Include/
+Lib/
+Scripts/
+tcl/
+.idea/

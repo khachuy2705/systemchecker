@@ -14,8 +14,10 @@ def check_port_list(lists):
 		result=check_port(host=host_tmp[0],port=host_tmp[1])
 		if result[0]==0:
 			# mail(config.list_email,'Canh bao check port that bai',result[1])
-			noi_dung=getnow('time')+'___'+result[1]+"|-|"+str(config.message_timeout)
-			rpush(noi_dung)
+			noi_dung = str(getnow('int')) + "|-|" + getnow('time') + result[1]
+			print(noi_dung)
+			a=rpush(noi_dung)
+			print(a)
 			# telegram_send(result[1])
 		else:
 			continue
@@ -27,7 +29,7 @@ def check_ping_list(lists):
 		if result[0]==0:
 			# mail(config.list_email,'Canh bao check ping that bai',result[1])
 			# telegram_send(result[1])
-			noi_dung=getnow('time')+'___'+result[1]+"|-|"+str(config.message_timeout)
+			noi_dung = str(getnow('int')) + "|-|" + getnow('time') + result[1]
 			rpush(noi_dung)
 		else:
 			continue
@@ -39,7 +41,7 @@ def check_link_lists(lists):
 		if result[0]==0:
 			# mail(config.list_email,'Canh bao check ping that bai',result[1])
 			# telegram_send(result[1])
-			noi_dung=getnow('time')+'___'+result[1]+"|-|"+str(config.message_timeout)
+			noi_dung = str(getnow('int')) + "|-|" + getnow('time') + result[1]
 			rpush(noi_dung)
 		else:
 			continue
@@ -61,3 +63,6 @@ if __name__ == '__main__':
 	# check_link_lists(config.list_url)
 	# check_ping_list(config.list_check_ping)
 	# check_port_list(config.list_check_port)
+
+for i in range(1,100):
+	rpush(str(getnow('int'))+'|-|Ket noi toi google.com.vn:8083 that bai')

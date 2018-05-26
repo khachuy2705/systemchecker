@@ -47,12 +47,12 @@ def mail(nguoi_nhan, tieu_de, noi_dung, username_sender='liles125876@gmail.com',
 
 def write_log(content):
 	import datetime
-	now = datetime.now().strftime('%Y-%m-%d %H:%M:%S : ')
+	now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S : ')
 	try:
 		f = open('exec_log.txt', 'a+')
 		f.write('\n')
-		f.write(str(now)+' : '+content)
-		print(str(now)+' : '+content)
+		f.write(str(now)+' : '+str(content))
+		print(str(now)+' : '+str(content))
 	except Exception as vl:
 		print('Co loi xay ra trong qua trinh ghi log')
 		print(vl)
@@ -156,7 +156,9 @@ def check_internet():
 #Các chức năng đẩy dữ liệu vào redis
 def rpush(content):
 	try:
+		# print('test thoi nhe',config.cho_phep_su_dung_redis)
 		if config.cho_phep_su_dung_redis == 1:
+			# print('test')
 			write_log('Bat dau push du lieu len redis')
 			redis.rpush(config.redis_key_notify, content)
 			write_log('Da day du lieu len redis: '+str(content))
@@ -171,7 +173,7 @@ def lpop(key=config.redis_key_notify):
 	try:
 		if config.cho_phep_su_dung_redis == 1:
 			write_log('Lay du lieu tu redis (LPOP)')
-			data=redis.lpop(key)
+			data=redis.lpop(key).decode('utf-8')
 			write_log('Du lieu lay tu redis:'+str(data))
 			return data
 		else:
@@ -181,17 +183,36 @@ def lpop(key=config.redis_key_notify):
 		write_log(value)
 		data=None
 		return data
+
+def llen(key=config.redis_key_notify):
+	try:
+		if config.cho_phep_su_dung_redis == 1:
+			write_log("Dem so luong mess can gui")
+			data=redis.llen(key)
+			if data:
+				write_log('Du lieu tra ve tu redis, LLEN= '+str(data))
+				return data
+			else:
+				return False
+		else:
+			return False
+	except Exception as value:
+		print(value)
+		write_log(value)
+		data=None
+		return data
+
 import datetime
 
 def getnow(arg):
 	"""nếu arg= int thì trả về số thôi, nếu arg = time thì trả về định dạng ngày tháng, nếu không thì return False"""
 	if arg=='int':
 		now=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-		return str(now)
+		return int(now)
 	elif arg == 'time':
 		now = datetime.datetime.now().strftime("%Y:%m:%d %H:%M:%S ")
 		return str(now)
 	else:
 		return False
 # def get_time()
-# print(getnow())
+# print(getnow('time'))

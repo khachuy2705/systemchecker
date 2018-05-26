@@ -48,4 +48,3 @@ redis_key_notify='buikhachuy2705keychoredis_notify'
 #Thời gian tối đa tồn tại tối đa của 1 message tình theo giây, thời gian xử lý - thời gian đưa lên < message_timeout mới chấp nhận gửi đi.
 message_timeout=60
 ########################################################################
-Nooij
