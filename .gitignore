@@ -4,3 +4,4 @@ Lib/
 Scripts/
 tcl/
 .idea/
+__pycache__/
